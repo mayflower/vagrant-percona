@@ -13,5 +13,6 @@ include apache
 include php
 include mysql
 include phpmyadmin
+include percona
 include screen
 include multitail
