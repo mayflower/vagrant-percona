@@ -17,4 +17,15 @@ class mysql {
     require => Service["mysql"],
   }
 
+    file {
+      'my.cnf':
+          ensure => file,
+          source => "puppet:///modules/mysql/my.cnf",
+          path => '/etc/mysql/my.cnf',
+          mode => 644,
+          owner => root,
+          group => root,
+          notify => Service['mysql'],
+    }
+
 }
