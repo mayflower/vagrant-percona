@@ -7,7 +7,7 @@ class percona {
     exec {
         "get_percona":
             command => "wget percona.com/get/percona-toolkit.deb",
-            creates => "/home/vagrant/percona-toolkit.deb"
+            creates => "/home/vagrant/percona-toolkit.deb",
             require => [Package["wget"]],
     }
 
