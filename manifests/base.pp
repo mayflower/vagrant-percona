@@ -14,3 +14,4 @@ include php
 include mysql
 include phpmyadmin
 include screen
+include multitail
