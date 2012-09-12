@@ -17,3 +17,4 @@ include phpmyadmin
 include percona
 include screen
 include multitail
+include application
