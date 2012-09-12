@@ -26,6 +26,7 @@ class mysql {
           owner => root,
           group => root,
           notify => Service['mysql'],
+          require => [Package["mysql-server"]]
     }
 
 }
