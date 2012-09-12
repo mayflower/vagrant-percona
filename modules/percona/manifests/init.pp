@@ -1,20 +1,20 @@
 class percona {
     package {
-        "wget":
+        "libterm-readkey-perl":
             ensure => installed,
     }
 
-    exec {
-        "get_percona":
-            command => "wget percona.com/get/percona-toolkit.deb",
-            creates => "/home/vagrant/percona-toolkit.deb",
-            require => [Package["wget"]],
+    file {
+        "copy_percona":
+            path => "/home/vagrant/percona-toolkit_2.1.3_all.deb",
+            ensure => file,
+            source => "puppet:///modules/percona/percona-toolkit_2.1.3_all.deb",
     }
 
     exec {
         "install_percona":
-            command => "sudo dpkg -i /home/vagrant/percona-toolkit.deb",
-            unless => "dpkg -s 'percona*' | grep ok",
-            require => [Exec["get_percona"]],
+            command => "sudo dpkg -i /home/vagrant/percona-toolkit_2.1.3_all.deb",
+            unless => 'dpkg -l | grep "percon"',
+            require => [File["copy_percona"], Package["libterm-readkey-perl"]],
     }
 }
