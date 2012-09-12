@@ -1,0 +1,44 @@
+# common
+nethack             on
+autodetach          on
+hardcopy_append     on
+vbell               on
+startup_message     off
+silencewait         5
+defscrollback       1024
+shell               bash
+
+sorendition rw
+hardstatus alwayslastline "%{.w} %c | %H | LOAD: %l |%{wb} %w %{= dd}"
+
+pow_detach_msg        "BYE"
+activity              "^Gactivity in %n (%t) [%w:%s]~"-
+bell_msg              "bell in %n!"
+vbell_msg             "   Wuff  ----  Wuff!!  "
+msgwait               5
+
+setenv SSH_AUTH_SOCK $HOME/.screen-ssh-agent
+
+sessionname vaillant
+
+screen -t BASH 0 bash -
+screen -t BASH 1 bash -
+screen -t root@BASH 2 sudo -i
+screen -t Error/AccessLog 3 multitail -s 2 -cS apache_error /var/www/app/data/logs/error.log -cS apache -I /var/www/app/data/logs/access.log
+screen -t AppLog 4 multitail -s 2 -cS php_error /var/www/app/data/logs/application.log -cS php_error -I /var/www/logs/php_error.log
+screen -t Gearman 5 multitail -s 2 -cS gearman_worker /var/www/app/scripts/GearmanManager/gearman-manager.log -cS php_error -I /var/www/app/scripts/GearmanManager/php-error.log
+
+                                                                                                                                                                                                                                             
+bind B screen -t 'BASH' bash -                                                                                                                                                                                                               
+bind L screen -t 'LINKS' links http://www.google.de                                                                                                                                                                                          
+                                                                                                                                                                                                                                             
+term xterm                                                                                                                                                                                                                                   
+defutf8 on                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                             
+# navigating regions with Ctrl-arrows                                                                                                                                                                                                        
+bindkey "^[[1;5D" focus left                                                                                                                                                                                                                 
+bindkey "^[[1;5C" focus right                                                                                                                                                                                                                
+bindkey "^[[1;5A" focus up
+bindkey "^[[1;5B" focus down
+
+# vim:set ts=2 tw=80:
