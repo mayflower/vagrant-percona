@@ -1,0 +1,6 @@
+[submodule "Sites/Anemometer"]
+	path = Sites/Anemometer
+	url = git://github.com/aulbach/Anemometer.git
+[submodule "Sites/Query-Digest-UI"]
+	path = Sites/Query-Digest-UI
+	url = git://github.com/aulbach/Query-Digest-UI.git
