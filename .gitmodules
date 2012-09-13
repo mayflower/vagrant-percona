@@ -4,6 +4,3 @@
 [submodule "Sites/Query-Digest-UI"]
 	path = Sites/Query-Digest-UI
 	url = git://github.com/aulbach/Query-Digest-UI.git
-[submodule "Anemometer"]
-	path = Anemometer
-	url = git://github.com/aulbach/Anemometer.git
