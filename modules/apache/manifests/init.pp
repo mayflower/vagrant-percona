@@ -25,6 +25,13 @@ class apache {
     source => "puppet:///modules/apache/virtualhost",
     require => Package['apache2'],
   }
+  
+  file { "/var/lock/apache2/":
+    ensure => present,
+    owner  => 'vagrant',
+    require => Package['apache2'],
+  }
+ 
 
   exec { "UsergroupChange" :
     command => "sed -i 's/USER=www-data/USER=vagrant/ ; s/GROUP=www-data/GROUP=vagrant/' /etc/apache2/envvars",
